@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视频播放器</title>
+</head>
+<body>
+    <video id="myVideo" width="640" height="360" controls autoplay onended="swapVideo()">
+        <source id="videoSource" src="A.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        function swapVideo() {
+            var video = document.getElementById("myVideo");
+            var videoSource = document.getElementById("videoSource");
+            
+            if (videoSource.src.includes("A.mp4")) {
+                videoSource.src = "B.mp4";
+            } else {
+                videoSource.src = "A.mp4";
+            }
+            
+            video.load();
+            video.play();
+        }
+
+        // 添加一个监听器，以防视频出现错误，立即切换到另一个视频
+        document.getElementById("myVideo").addEventListener("error", function() {
+            swapVideo();
+        });
+    </script>
+</body>
+</html>
